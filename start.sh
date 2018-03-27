@@ -20,18 +20,14 @@ then
 fi
 
 ## Rehash command needs to be run before starting apache.
-c_rehash /etc/ssl/certs
+c_rehash /etc/ssl/certs /secrets/ssl
 
 a2enmod ssl
 a2enmod include
 a2ensite default-ssl 
 
-## set SGID for www-data 
-chown -R www-data.www-data /var/www/html /var/cosign
-chmod -R 2775 /var/www/html /var/cosign
-
 cd /var/www/html
 #drush @sites cc all --yes
-drush up --no-backup --yes
+#drush up --no-backup --yes
 
 /usr/local/bin/apache2-foreground
