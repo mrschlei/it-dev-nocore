@@ -59,5 +59,5 @@ RUN chmod g+rwx /etc/ssl/private
 ### Start script incorporates config files and sends logs to stdout ###
 COPY start.sh /usr/local/bin
 RUN chmod 755 /usr/local/bin/start.sh
-CMD /usr/local/bin/start.sh
+CMD /bin/sh -x /usr/local/bin/start.sh
 
