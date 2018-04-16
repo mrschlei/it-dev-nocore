@@ -38,6 +38,7 @@ RUN apt-get remove -y make wget autoconf \
 EXPOSE 8080
 EXPOSE 8443
 
+# nothing here for the time being.
 COPY . /var/www/html/
 
 ### There may be an easier way to do all of this by setting APACHE_RUN_USER
@@ -48,15 +49,15 @@ RUN chown -R root:root /var/www/html /var/log/apache2 /var/lock/apache2 \
 	/var/run/apache2
 
 ### Modify perms for the openshift user, who is not root, but part of root group.
-RUN chmod -R g+rw /var/www/html /var/cosign /var/log/apache2 /var/www/html/sites/default /etc/apache2 \
+RUN chmod -R g+rw /var/www/html /var/cosign 
+RUN chmod -R g+rw /var/log/apache2 /var/www/html/sites /etc/apache2 \
 	/etc/ssl/certs /etc/ssl/private /etc/apache2/mods-enabled /etc/apache2/sites-enabled \
 	/etc/apache2/sites-available /etc/apache2/mods-available \
 	/var/lib/apache2/module/enabled_by_admin /var/lib/apache2/site/enabled_by_admin \
-	/var/lock/apache2 /var/run/apache2
-RUN chmod g+rwx /etc/ssl/private
+	/var/lock/apache2 /var/run/apache2 
+RUN chmod g+x /etc/ssl/private
 
 ### Start script incorporates config files and sends logs to stdout ###
 COPY start.sh /usr/local/bin
 RUN chmod 755 /usr/local/bin/start.sh
 CMD /usr/local/bin/start.sh
-
