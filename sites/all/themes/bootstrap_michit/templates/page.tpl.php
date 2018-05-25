@@ -114,8 +114,6 @@
   </div>
 </header>
 
-<div class="main-container <?php print $container_class; ?>">
-
   <header role="banner" id="page-header">
     <?php if (!empty($site_slogan)): ?>
       <p class="lead"><?php print $site_slogan; ?></p>
@@ -126,6 +124,8 @@
   
   <?php if (!empty($breadcrumb)): ?><div class="breadcrumb-container"><? print $breadcrumb; ?></div><? endif;?>
   
+<div class="main-container <?php print $container_class; ?>">
+
   <div class="row">
 
     <?php if (!empty($page['sidebar_first'])): ?>
