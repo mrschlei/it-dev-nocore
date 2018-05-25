@@ -29,8 +29,8 @@ a2enmod ssl
 a2enmod include
 a2ensite default-ssl 
 
-#cd /var/www/html
-#drush @sites cc all --yes
-#drush up --no-backup --yes
+cd /var/www/html
+drush @sites cc all --yes
+drush up --no-backup --yes
 
 /usr/local/bin/apache2-foreground
